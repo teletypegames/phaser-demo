@@ -13,7 +13,7 @@ OUTPUT_ZIP = $(PROJECT)-$(VERSION).html.zip
 
 VERSION_FILE = .version
 PHASER_JS_URL  = https://cdn.jsdelivr.net/npm/phaser@$(PHASER_VERSION)/dist/phaser.min.js
-INDEX_HTML_URL = https://git.teletype.hu/tools/phaser-tools/raw/branch/master/web/index.html
+INDEX_HTML_URL = https://git.teletypegames.org/tools/phaser-tools/raw/branch/master/web/index.html
 
 all: build
 

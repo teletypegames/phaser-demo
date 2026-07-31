@@ -6,9 +6,8 @@ steps:
       - make ci-version
 
   - name: build
-    image: node:22-alpine
+    image: git.teletypegames.org/internal/phaser-builder:latest
     commands:
-      - apk add --no-cache zip make curl
       - make ci-export
 
   - name: upload
