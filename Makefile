@@ -77,8 +77,8 @@ ci-upload:
 			"$(UPDATE_SERVER)/build/upload?name=$(PROJECT)&version=$$VERSION" || exit 1; \
 	done
 
-ci-update:
+ci-publish:
 	@VERSION=$$(cat $(VERSION_FILE)); \
 	curl -fsS -X POST -H "X-Update-Secret: $(UPDATE_SECRET)" "$(UPDATE_SERVER)/build/publish?name=$(PROJECT)&platform=phaser&version=$$VERSION"
 
-.PHONY: all build web serve export watch clean ci-version ci-export ci-upload ci-update
+.PHONY: all build web serve export watch clean ci-version ci-export ci-upload ci-publish
