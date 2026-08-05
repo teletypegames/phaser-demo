@@ -71,12 +71,14 @@ ci-upload:
 	META_SRC="metadata.json"; \
 	META_DST="$(PROJECT)-$$VERSION.metadata.json"; \
 	cp $$META_SRC $$META_DST; \
-	sshpass -p "$(DROPAREA_SSH_PASSWORD)" scp -o StrictHostKeyChecking=no -P $(DROPAREA_PORT) \
-		$$FILE $$META_DST \
-		$(DROPAREA_USER)@$(DROPAREA_HOST):$(DROPAREA_TARGET_PATH)/
+	for f in $$FILE $$META_DST; do \
+		curl -fsS -H "X-Update-Secret: $(UPDATE_SECRET)" \
+			-F "file=@$$f" \
+			"$(UPDATE_SERVER)/build/upload?name=$(PROJECT)&version=$$VERSION" || exit 1; \
+	done
 
 ci-update:
 	@VERSION=$$(cat $(VERSION_FILE)); \
-	curl "$(UPDATE_SERVER)/update?secret=$(UPDATE_SECRET)&name=$(PROJECT)&platform=phaser&version=$$VERSION"
+	curl -fsS -X POST -H "X-Update-Secret: $(UPDATE_SECRET)" "$(UPDATE_SERVER)/build/publish?name=$(PROJECT)&platform=phaser&version=$$VERSION"
 
 .PHONY: all build web serve export watch clean ci-version ci-export ci-upload ci-update
