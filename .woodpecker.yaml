@@ -1,1 +1,3 @@
+# The CI pipeline is served by the update server: GET /build/config?platform=phaser
 platform: phaser
+name: phaserdemo
