@@ -3,7 +3,8 @@
   "title": "Phaser Demo",
   "author": "Teletype Games",
   "desc": "It's a simple demo program in Phaser",
-  "site": "https://git.teletypegames.org/games/phaserdemo",
+  "site": "https://git.teletypegames.org/demos/phaser-demo",
+  "repo": "https://git.teletypegames.org/demos/phaser-demo",
   "license": "MIT License",
   "version": "1.0.0"
 }
