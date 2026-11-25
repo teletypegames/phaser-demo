@@ -1,14 +1,26 @@
-// game.js
+/**
+ * The Phaser demo: the letters of "TELETYPE GAMES" ride a sine wave with drop
+ * shadows, cycling through a five-colour palette.
+ * @module
+ */
 
+/** Game width in pixels. */
 const SCREEN_W = 640;
+/** Game height in pixels. */
 const SCREEN_H = 480;
+/** The text that waves. */
 const MESSAGE = 'TELETYPE GAMES';
+/** Horizontal distance between two letters, in pixels. */
 const CHAR_W = 40;
+/** Height of the wave, in pixels up and down. */
 const WAVE_AMPLITUDE = 28;
 
+/** The colours the letters cycle through. */
 const PALETTE = ['#1a1c2c', '#5d275d', '#b13e53', '#ef7d57', '#ffcd75'];
 
+/** The only scene: spawns the letters and moves them every frame. */
 class DemoScene extends Phaser.Scene {
+	/** Spawns every letter with its shadow, centred on the screen. */
 	create() {
 		const totalW = MESSAGE.length * CHAR_W;
 		const startX = (SCREEN_W - totalW) / 2 + CHAR_W / 2;
@@ -25,6 +37,10 @@ class DemoScene extends Phaser.Scene {
 		});
 	}
 
+	/**
+	 * Moves every letter along the wave and shifts the letters' colours.
+	 * @param {number} time the time since the game started, in milliseconds
+	 */
 	update(time) {
 		const t = time / 400;
 		this.letters.forEach(({ shadow, text }, i) => {
